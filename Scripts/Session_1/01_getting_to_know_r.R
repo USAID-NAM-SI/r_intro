@@ -22,9 +22,6 @@ your_number <-
 your_number*2
 
 
-# Print your name and number to the console
-print(your_number*2)  
-
 
 # DATAFRAMES --------------------------------------------------------------
 
@@ -51,3 +48,7 @@ greeting("")
 
 #use the pipe %>%  to use your_name followed by the greeting
 your_name %>% greeting()
+
+
+# Print your name and number to the console
+paste(your_name,your_number,collapse = " ")  
