@@ -16,7 +16,9 @@ library()
 your_name <- c("")
 
 # set your number
-your_number <- 26
+your_number <- 
+  
+#see the result of your number times 2
 your_number*2
 
 
@@ -30,21 +32,22 @@ print(your_number*2)
 # column X should take values: "E", "F", "G"
 # and column y should values: 3, 2, 1
 
-df <- data.frame(x = c("E", "F", "G"), y = c(3, 2, 1))
+df <- data.frame(x = c(), y = c())
 
 # Practice accessing columns in the data frame
-df$x
+
 
 
 # FUNCTIONS -------------------------------------------------------
 
-# Create a greeting function
-# follow the instructions from the slide
+# This creates a greeting function
 greeting <- function(your_name){
   paste("Hello,", your_name, "!")
 }
 
-
+#use the greeting function above to greet someone in the room (eg. have the greeting use their name)
 greeting("")
 
+
+#use the pipe %>%  to use your_name followed by the greeting
 your_name %>% greeting()
