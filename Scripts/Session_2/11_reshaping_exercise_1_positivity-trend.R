@@ -7,7 +7,7 @@
   library(gagglr)
   
   # Load data
-  df_msd <- return_latest("Data", "PSNU_IM.*South Africa") %>%
+  df_msd <- return_latest("Data", "PSNU") %>%
     read_psd()
   
   # Filter & summarize dataset to just Index for Eugene and Year
@@ -15,7 +15,7 @@
     filter(indicator %in% c("HTS_TST", "HTS_TST_POS"),
            standardizeddisaggregate == "Modality/Age/Sex/Result",
            modality == "Index",
-           psnu %in% c("ec Alfred Nzo District Municipality")) %>% 
+           psnu %in% c("Peoria")) %>% 
     group_by(fiscal_year, psnu, indicator) %>% 
     summarize(across(c(starts_with("qtr")), \(x) sum(x, na.rm = TRUE)),
               .groups = "drop") %>% 
@@ -25,23 +25,24 @@
 
 # EXERCISE ----------------------------------------------------------------
 
-  # Calculate the positivity trend in Eugene. 
+  # Calculate the positivity trend in Peoria 
   # Reshape the dataset long so you get each quarter as its own row as we've 
   # done in the slides.
     
   ?pivot_longer
   
   df_long <- df_semi %>% 
-     pivot_longer(starts_with("qtr"),
-                  "...")
+    pivot_longer(starts_with("qtr"),
+                 "...")
+                  
   
   # Reshape wide so you have your indicators as columns
   
   ?pivot_wider
   
   df_long2 <- df_long %>% 
-    pivot_wider(names_from = "...", 
-                values_from = "...")
+    pivot_wider(names_from = indicator, 
+                values_from = value)
   
   #Combine year and quarter into one column called period and clean up period
   
