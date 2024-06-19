@@ -15,7 +15,7 @@
   df_index_psnu <- df_msd %>% 
     filter(indicator == "HTS_TST_POS",
            modality %in% c("Index", "IndexMod"),
-           fiscal_year == 2023) %>%
+           fiscal_year == 2060) %>%
     group_by(fiscal_year, psnu) %>% 
     summarize(across(c(targets, cumulative), 
                      \(x) sum(x, na.rm = TRUE)),
@@ -40,9 +40,9 @@
   # If a PSNU has a low achievement, apply a color to flag this as important for
   # our data visualization
   # Calculate achievement (cumulative / targets)
-  # If the achievement is low, i.e. below 100% in Q4, use an ifelse() statement 
-  # to set the value to ‘purple’, otherwise gray (#909090) for the variable 
-  # achv_color  
+  # If the achievement is low, less than 95%, use an ifelse() statement 
+  # to set the value to ‘purple’, otherwise gray for the variable 
+  # achv_color   
   
   ?ifelse
   
@@ -52,22 +52,14 @@
 
 # EXERCISE PART III -------------------------------------------------------
 
-  # Calculate a multi-step condition statement, first with a nested ifelse() 
-  # and then use case_when() 
-  # If the achievement is low, i.e. below 100% for Q4, use an ifelse() statement 
+  # Calculate a multi-step condition statement using case_when() 
+  # If the achievement is low, i.e. below 100% for Q4, use case_when() statement 
   # to set the value to ‘purple’, NA for values that are not finite, otherwise 
-  # gray (#909090)
-  # Repeat this process with a case_when() statement
+  # gray 
   
-  
-  df_flag %>%  
-    mutate(achv_color = ifelse(low_achv == TRUE, "...", 
-                               ifelse(is.infinite("..."), NA, "...")))
   
   df_flag %>% 
-    mutate(achv_color = case_when(low_achv == TRUE ~ "purple",
-                                  is.infinite(achievement) ~ NA_character_,
-                                  TRUE ~ "#909090"))
+    mutate(achv_color = case_when())
            
            
   

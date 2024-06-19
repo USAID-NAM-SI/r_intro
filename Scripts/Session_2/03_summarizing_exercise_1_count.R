@@ -8,7 +8,7 @@ library(tidyverse)
 library(gagglr)
 
 # Load data
-df_msd <- return_latest("Data", "PSNU_IM") %>%
+df_msd <- return_latest("Data", "PSNU") %>%
   read_psd()
 
 #filter dataset to just HTS data

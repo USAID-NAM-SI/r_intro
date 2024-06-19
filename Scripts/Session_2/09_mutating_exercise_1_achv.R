@@ -2,6 +2,10 @@
 
 
 # SETUP -------------------------------------------------------------------
+  
+  #install scales package
+  install.packages("scales")
+  
 
   # Library
   library(tidyverse)
@@ -24,8 +28,8 @@
 
 # EXERCISE ----------------------------------------------------------------
 
-  # What is the expected achievement by the end of FY24Q2?
-  # Calculate expected achievement, achievement_exp (.5 * targets)
+  # What is the target achievement in FY60 by psnu? Create a new column
+  # for target achievement. This is cumulative divided by the target
   
     df_index_psnu %>% 
       mutate("..." = "...")

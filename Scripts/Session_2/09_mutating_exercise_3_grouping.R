@@ -19,7 +19,8 @@
     summarize(across(c(targets, cumulative), 
                      \(x) sum(x, na.rm = TRUE)),
               .groups = "drop") %>% 
-    arrange(desc(targets))
+    arrange(desc(targets)) %>% 
+    print()
   
 
 
