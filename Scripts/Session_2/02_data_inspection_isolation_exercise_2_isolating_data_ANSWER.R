@@ -2,10 +2,10 @@
 
 # Project Setup & Data Prep -----------------------------------------------
 library(tidyverse)
-library(gophr)
+library(gagglr)
 
 # Create a path to data
-msd_path <- list.files("Data", pattern = "PSNU", full.names = T)
+msd_path <- subnat_path <- list.files("Data", pattern = "PSNU", full.names = T)
 
 # Load the data
 df_msd <- read_psd(msd_path)
@@ -18,7 +18,7 @@ names(df_msd)
 
 # Rename the "source_name" column to "sourcename"
 df_msd %>% 
-  rename("sourcename" = "source_name" ) %>% 
+  rename(sourcename=source_name) %>% 
   names()
 
 
@@ -26,7 +26,7 @@ df_msd %>%
 
 # Practice filtering the MSD
 
-# Filter the indicator column to only "HTS_TST"
+# Filter the indicator column to only "HTS_TST
 
 df_msd %>% 
   filter(indicator == "HTS_TST") %>% 
@@ -35,7 +35,7 @@ df_msd %>%
 # Try the same filter, but now filter the fiscal_year to 2060
 df_msd %>% 
   filter(indicator == "HTS_TST",
-         fiscal_year== "2060") %>% 
+         fiscal_year == "2060") %>% 
   count()
 
 
@@ -44,13 +44,13 @@ df_msd %>%
 # Count the number of indicators in the dataset and arrange the 
 # frequency in descending order  
 df_msd %>% 
-  count("...") %>% 
-  arrange("...")
+  count(indicator) %>% 
+  arrange(desc(n))
 
 # Try arranging the results in ascending order
 df_msd %>% 
-  count("...") %>% 
-  arrange("...")
+  count(indicator) %>% 
+  arrange(n)
 
 
 # SELECTING ---------------------------------------------------------------
@@ -59,7 +59,8 @@ df_msd %>%
 # variables mech_code and mech_name
 df_msd_mech <- 
   df_msd %>% 
-  select("...")
+  select(mech_code,mech_name)
 
 # Check the names of the columns in the df_msd_mech data frame
+names(df_msd_mech)
 
