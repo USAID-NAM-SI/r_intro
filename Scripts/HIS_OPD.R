@@ -36,21 +36,14 @@ df_test <- backend %>%
       str_detect(dataelementname, "months") ~ str_extract(dataelementname, "(\\d+\\s+months)"),
     dataelementgroupname == "NACS_Nutrition Assessment Counselling and Support" & 
       str_detect(dataelementname, "years") ~ str_extract(dataelementname, "(\\d+\\s+years)"),
+    str_detect(categoryoptioncomboname, "\\d+\\+\\s*years") ~ str_extract(categoryoptioncomboname, "\\d+\\+\\s*years"),
+    str_detect(categoryoptioncomboname, "\\d+\\s*month\\s*-\\s*\\d+\\s*years") ~ str_extract(categoryoptioncomboname, "\\d+\\s*month\\s*-\\s*\\d+\\s*years"),
     str_detect(categoryoptioncomboname, "years") ~ str_extract(categoryoptioncomboname, "\\d+\\s*-\\s*\\d+\\s*years"),
-    str_detect(categoryoptioncomboname, "years") ~ str_extract(categoryoptioncomboname, "\\d+\\+\\s*years"),
     str_detect(categoryoptioncomboname, "month") ~ str_extract(categoryoptioncomboname, "<\\s*\\d+\\s*month"),
-    str_detect(categoryoptioncomboname, "years") ~ str_extract(categoryoptioncomboname, "\\d+\\s*month\\s*-\\s*\\d+\\s*years"),
     TRUE ~ ""))
     
     
-    #test last part - 50+ years and 1 month - 4 years is not pulling through in the age column in code above 
-    vmmc<-df_test %>% 
-      filter(dataelementname=="VMMC - Circumcision Procedures done") %>% 
-      distinct(categoryoptioncomboname,age)
     
-         
-         
-         
          
   #UNUSED CODE - COMMENTING OUT IN CASE NEEDED LATER
   # disaggregate=str_extract(dataelementname, "(?<=-).+"))
